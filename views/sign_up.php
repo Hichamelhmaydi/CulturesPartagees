@@ -31,6 +31,11 @@ if (isset($_POST['sub'])) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
+  <nav>
+  <section class="section is-flex is-justify-content-center is-align-items-center" >
+    <a href="login.php" class="button is-primary is-large is-rounded">Login</a>
+  </section>
+  </nav>
   <section class="section">
     <div class="container">
       <div class="columns is-centered">
