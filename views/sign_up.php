@@ -1,5 +1,7 @@
 <?php
-// sign_up.php
+
+session_start(); 
+
 require_once '../database/Connection.php';
 require_once '../classes/inscription.php';
 
@@ -13,9 +15,18 @@ if (isset($_POST['sub'])) {
     $user_password = $_POST['password'];
     $role = htmlspecialchars($_POST['role']);
 
-    if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($user_password)&& !empty($nom)&& !empty($prenom)&& !empty($email)) {
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($user_password)) {
         $inscription->setValues($nom, $prenom, $email, $user_password, $role);
         $inscription->inscription();
+
+        $_SESSION['user'] = [
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'email' => $email,
+            'role' => $role
+        ];
+
+       
     } else {
         echo "Veuillez entrer des données valides.";
     }
@@ -31,7 +42,8 @@ if (isset($_POST['sub'])) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
-  <nav>
+
+<nav>
   <section class="section is-flex is-justify-content-center is-align-items-center" >
     <a href="login.php" class="button is-primary is-large is-rounded">Login</a>
   </section>
@@ -102,5 +114,3 @@ if (isset($_POST['sub'])) {
   </section>
 </body>
 </html>
-
-
