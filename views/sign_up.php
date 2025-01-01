@@ -1,3 +1,9 @@
+<?php
+require '../database/Connection.php';
+$conn = new Connection();
+$pdo = $conn->getPDO();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
