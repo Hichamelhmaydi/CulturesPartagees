@@ -1,9 +1,27 @@
 <?php
-require '../database/Connection.php';
-$conn = new Connection();
-$pdo = $conn->getPDO();
+// sign_up.php
+require_once '../database/Connection.php';
+require_once '../classes/inscription.php';
 
+$pdo = (new Connection())->getPDO();
+$inscription = new Inscription($pdo);
+
+if (isset($_POST['sub'])) {
+    $nom = htmlspecialchars($_POST['nom']);
+    $prenom = htmlspecialchars($_POST['prenom']);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $user_password = $_POST['password'];
+    $role = htmlspecialchars($_POST['role']);
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($user_password)&& !empty($nom)&& !empty($prenom)&& !empty($email)) {
+        $inscription->setValues($nom, $prenom, $email, $user_password, $role);
+        $inscription->inscription();
+    } else {
+        echo "Veuillez entrer des données valides.";
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,7 +36,7 @@ $pdo = $conn->getPDO();
       <div class="columns is-centered">
         <div class="column is-half">
           <h1 class="title has-text-centered">Inscription</h1>
-          <form method="post">
+          <form method="POST">
             <div class="field">
               <label class="label">Nom</label>
               <div class="control">
@@ -27,9 +45,9 @@ $pdo = $conn->getPDO();
             </div>
 
             <div class="field">
-              <label class="label">prenom</label>
+              <label class="label">Prénom</label>
               <div class="control">
-                <input class="input" type="text" name="prenom" placeholder="Entrez votre prenom" required>
+                <input class="input" type="text" name="prenom" placeholder="Entrez votre prénom" required>
               </div>
             </div>
 
@@ -43,19 +61,21 @@ $pdo = $conn->getPDO();
             <div class="field">
               <label class="label">Mot de passe</label>
               <div class="control">
-                <input class="input" type="password" name="mot_de_passe" placeholder="Choisissez un mot de passe" required>
+                <input class="input" type="password" name="password" placeholder="Choisissez un mot de passe" required>
               </div>
             </div>
 
             <div class="field">
-                <label>Rôle
-                    <select class="input-group-field" name="role" style="padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px;" required>
-                            <option value="" disabled selected>Sélectionnez votre rôle</option>
-                            <option value="utilisateur">Utilisateur</option>
-                            <option value="auteur">Auteur</option>
-                    </select>
-                </label>
+              <label class="label">Rôle</label>
+              <div class="control">
+                <select class="input" name="role" required>
+                  <option value="" disabled selected>Sélectionnez votre rôle</option>
+                  <option value="utilisateur">Utilisateur</option>
+                  <option value="auteur">Auteur</option>
+                </select>
+              </div>
             </div>
+
             <div class="field">
               <div class="control">
                 <label class="checkbox">
@@ -67,7 +87,7 @@ $pdo = $conn->getPDO();
 
             <div class="field">
               <div class="control">
-                <button class="button is-primary is-fullwidth">S'inscrire</button>
+                <button name="sub" class="button is-primary is-fullwidth">S'inscrire</button>
               </div>
             </div>
           </form>
@@ -77,3 +97,5 @@ $pdo = $conn->getPDO();
   </section>
 </body>
 </html>
+
+

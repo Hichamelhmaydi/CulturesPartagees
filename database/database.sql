@@ -8,6 +8,7 @@ CREATE TABLE user (
     user_password VARCHAR(20),
     role ENUM ('utilisateur','auteur')
 );
+ALTER TABLE user MODIFY COLUMN user_password VARCHAR(255);
 CREATE TABLE admin (
     email VARCHAR(50),
     admin_password VARCHAR(20) 
