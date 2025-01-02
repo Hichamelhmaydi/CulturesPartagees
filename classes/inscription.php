@@ -28,7 +28,11 @@ class Inscription {
         $stmt->bindParam(3, $this->email, PDO::PARAM_STR);
         $stmt->bindParam(4, $this->user_password, PDO::PARAM_STR);
         $stmt->bindParam(5, $this->role, PDO::PARAM_STR);
-        header('Location: ../views/index.html');
+        if($this->role == 'utilisateur'){
+            header('Location: ../views/index.html');
+        }else{
+            header('Location: ../views/auteur.php');
+        }
         $stmt->execute();
     }
 }
