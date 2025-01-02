@@ -1,9 +1,11 @@
 #article_form{
    position: absolute;
     top: 50%;
-    left: 40%;
+    left: 25%;
     display: none;
+    background-color: white;
+    width:40em;
 }
-body{
-    /* filter: blur(8px);   */
+#article_form section{
+    margin: 10em;
 }
