@@ -7,7 +7,6 @@ require_once '../classes/login.php';
 $pdo = (new Connection())->getPDO();
 $login = new Login($pdo);
 
-$error_message = '';
 
 if (isset($_POST['sub'])) {
     $email = $_POST['email'];
@@ -15,10 +14,7 @@ if (isset($_POST['sub'])) {
 
     if (!empty($email) && !empty($password)) {
         $login->setValues($email, $password);
-        $error_message = $login->login(); 
-    } else {
-        $error_message = "Veuillez remplir tous les champs.";
-    }
+    } 
 }
 ?>
 
@@ -56,13 +52,6 @@ if (isset($_POST['sub'])) {
                 <button name="sub" class="button is-primary is-fullwidth">Se connecter</button>
               </div>
             </div>
-
-          
-            <?php if ($error_message): ?>
-                <div class="notification is-danger">
-                    <?php echo $error_message; ?>
-                </div>
-            <?php endif; ?>
           </form>
         </div>
       </div>
