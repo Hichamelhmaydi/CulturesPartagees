@@ -19,7 +19,7 @@
    <link rel="stylesheet" href="../css/base.css">
    <link rel="stylesheet" href="../css/vendor.css">  
    <link rel="stylesheet" href="../css/main.css">
-        
+   <link rel="stylesheet" href="../css/article_form.css">
 
    <!-- script
    ================================================== -->
@@ -391,7 +391,7 @@
                  <article class="brick entry animate-this">
 
                <div class="entry-thumb" >
-	                  <img src="../images/bouton-ajouter-un-fichier.png" alt="Liberty">                      
+	                  <img src="../images/bouton-ajouter-un-fichier.png" alt="Liberty" id="ajouter">                      
                </div>
 
                <div class="entry-text">
@@ -407,6 +407,58 @@
 
 
                 <!-- fin f'ajouter un article -->
+
+
+                <!-- article form -->
+                    <form action="" id="article_form">
+
+                        <section class="section">
+                                    <div class="container">
+                                    <h1 class="title has-text-centered">Ajouter un article</h1>
+                                    <div class="columns is-centered">
+                                        <div class="column is-half">
+                                        <form method="POST" action="add_article.php">
+                                            <div class="field">
+                                            <label class="label">Titre</label>
+                                            <div class="control">
+                                                <input class="input" type="text" name="titre" placeholder="Entrez le titre de l'article" required>
+                                            </div>
+                                            </div>
+
+                                            <div class="field">
+                                            <label class="label">Contenu</label>
+                                            <div class="control">
+                                                <textarea class="textarea" name="contenu" placeholder="Écrivez le contenu de l'article" required></textarea>
+                                            </div>
+                                            </div>
+
+                                            <div class="field">
+                                            <label class="label">Auteur</label>
+                                            <div class="control">
+                                                <input class="input" type="text" name="auteur" placeholder="Entrez le nom de l'auteur" required>
+                                            </div>
+                                            </div>
+
+                                            <div class="field">
+                                            <label class="label">Catégorie</label>
+                                            <div class="control">
+                                                <input class="input" type="text" name="categorie" placeholder="Entrez la catégorie de l'article" required>
+                                            </div>
+                                            </div>
+                                            <div class="field">
+                                            <div class="control">
+                                                <button class="button is-primary is-fullwidth" type="submit">Ajouter l'article</button>
+                                            </div>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </section>
+
+                    </form>
+                <!-- fin article form -->
+
 
          </div> <!-- end brick-wrapper --> 
 
