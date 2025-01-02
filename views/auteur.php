@@ -586,6 +586,7 @@
    <script src="js/plugins.js"></script>
    <script src="js/jquery.appear.js"></script>
    <script src="js/main.js"></script>
+   <script src="../js/formule_article.js"></script>
 
 </body>
 
