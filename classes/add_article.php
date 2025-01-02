@@ -12,7 +12,7 @@ class Article {
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
-        $this->statut = 'en attente';  // Le statut par défaut
+        $this->statut = 'en attente';  
     }
 
     public function setValues($titre, $contenu, $auteur, $categorie) {
@@ -23,8 +23,7 @@ class Article {
     }
 
     public function ajouterArticle() {
-        echo "Auteur: " . $this->auteur . "<br>";
-        echo "Categorie: " . $this->categorie . "<br>";
+        
     
         $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM user WHERE LOWER(nom) = LOWER(?) AND role = 'auteur'");
         $stmt->bindParam(1, $this->auteur, PDO::PARAM_STR);
@@ -35,9 +34,6 @@ class Article {
 
 
 
-        
-        echo "Auteur: " . $this->auteur . "<br>";
-        echo "Result: " . $resultAuteur . "<br>";
         
     
         $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM categories WHERE nom_ca = ?");
@@ -61,9 +57,7 @@ class Article {
             } else {
                 echo "La catégorie spécifiée n'existe pas dans la base de données.";
             }
-        } else {
-            echo "Le nom de l'auteur n'existe pas dans la base de données.";
-        }
+        } 
     }
     
 }

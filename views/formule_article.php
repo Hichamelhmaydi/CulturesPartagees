@@ -10,10 +10,6 @@ if (isset($_POST['sub_art'])) {
     $auteur = $_POST['auteur'];
     $categorie = $_POST['categorie'];
 
-    echo "Titre: " . $titre . "<br>";
-    echo "Contenu: " . $contenu . "<br>";
-    echo "Auteur: " . $auteur . "<br>";
-    echo "Categorie: " . $categorie . "<br>";
 
     if (!empty($titre) && !empty($contenu) && !empty($auteur) && !empty($categorie)) {
         $Article = new Article($pdo);
@@ -46,7 +42,7 @@ if (isset($_POST['sub_art'])) {
                         <div class="field">
                             <label class="label">Titre</label>
                             <div class="control">
-                                <input class="input" type="text" name="titre" placeholder="Entrez le titre de l'article" maxlength="100" required>
+                                <input class="input" type="text" name="titre" placeholder="Entrez le titre de l'article" maxlength="20" required>
                             </div>
                         </div>
 
@@ -60,14 +56,14 @@ if (isset($_POST['sub_art'])) {
                         <div class="field">
                             <label class="label">Auteur</label>
                             <div class="control">
-                                <input class="input" type="text" name="auteur" placeholder="Entrez le nom de l'auteur" maxlength="50" required>
+                                <input class="input" type="text" name="auteur" placeholder="Entrez le nom de l'auteur" maxlength="20" required>
                             </div>
                         </div>
 
                         <div class="field">
                             <label class="label">Catégorie</label>
                             <div class="control">
-                                <input class="input" type="text" name="categorie" placeholder="Entrez la catégorie de l'article" maxlength="50" required>
+                                <input class="input" type="text" name="categorie" placeholder="Entrez la catégorie de l'article" maxlength="10" required>
                             </div>
                         </div>
 
