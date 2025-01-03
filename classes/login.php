@@ -39,7 +39,7 @@ class Login {
             exit;
         } else {
 
-            return "Adresse e-mail ou mot de passe incorrect.";
+            echo "Adresse e-mail ou mot de passe incorrect.";
         }
     }
 }

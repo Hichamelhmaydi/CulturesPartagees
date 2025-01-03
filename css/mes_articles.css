@@ -1,0 +1,8 @@
+article{
+    background-color: rgb(230, 230, 230);
+    margin:1em 0 0 1em;
+    padding-left:3em;
+    width:80em;
+    border-radius:2em;
+    display:grid;
+}
