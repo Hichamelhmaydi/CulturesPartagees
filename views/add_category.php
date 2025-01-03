@@ -1,3 +1,20 @@
+<?php
+require_once '../database/Connection.php';
+require_once '../classes/add_categorie.php';
+
+$pdo = (new Connection())->getPDO();
+
+$addCategorie = new AddCategorie($pdo);
+
+if (isset($_POST['submit'])) {
+    $nom_ca = $_POST['category_name'];
+    if (!empty($nom_ca)) {
+        $addCategorie->setValeus($nom_ca);  
+        $addCategorie->AddCategorie();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
