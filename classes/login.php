@@ -37,9 +37,18 @@ class Login {
                 'email' => $user['email'],
                 'role' => $user['role']
             ];
-             header("Location: index.html");
+            if ($user['role'] == 'utilisateur') {
+                header('Location: ../views/index.html');
             exit;
-        } 
+        } elseif ($user['role'] == 'auteur') {
+            header('Location: ../views/auteur.php');
+            exit;
+        }
+        elseif ($user['role'] == 'admin') {
+            header('Location: ../views/admin.php');
+            exit;
+        }
     }
+}
 }
 ?>

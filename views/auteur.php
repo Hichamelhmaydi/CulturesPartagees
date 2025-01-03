@@ -69,7 +69,7 @@
 			            <li><a href="single-standard.html">Standard Post</a></li>
 			         </ul>
 					</li>
-					<li><a href="about.html" title="">About</a></li>	
+					<li><a href="auteur_dashboard.php" title="">dashboard</a></li>	
 					<li><a href="contact.html" title="">Contact</a></li>										
 				</ul>
 			</nav> <!-- end main-nav-wrap -->
