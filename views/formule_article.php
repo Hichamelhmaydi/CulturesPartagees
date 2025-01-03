@@ -61,11 +61,20 @@ if (isset($_POST['sub_art'])) {
                         </div>
 
                         <div class="field">
-                            <label class="label">Catégorie</label>
-                            <div class="control">
-                                <input class="input" type="text" name="categorie" placeholder="Entrez la catégorie de l'article" maxlength="10" required>
-                            </div>
-                        </div>
+                <label class="label">Catégorie</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select name="categorie" required>
+                            <option value="" disabled selected>Choisissez une catégorie</option>
+                            <option value="cinema">Cinéma</option>
+                            <option value="musique">Musique</option>
+                            <option value="sports">Sports</option>
+                            <option value="les arts">Les Arts</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
 
                         <div class="field">
                             <div class="control">
