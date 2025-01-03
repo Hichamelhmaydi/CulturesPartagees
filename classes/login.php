@@ -58,7 +58,7 @@ class Login {
                     $_SESSION['admin'] = [
                         'email' => $admin['email']
                     ];
-                    header("Location: ../views/auteur_dashboard.php");
+                    header("Location: ../views/admin_dashboaed.php");
                     exit;
                 } else {
                     echo "Mot de passe incorrect pour l'administrateur.";
