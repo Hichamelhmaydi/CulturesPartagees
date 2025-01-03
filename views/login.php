@@ -4,7 +4,9 @@ session_start();
 require_once '../database/Connection.php';
 require_once '../classes/login.php';
 
- $pdo = (new Connection())->getPDO();
+$pdo = (new Connection())->getPDO();
+
+
 
  $login = new Login($pdo);
 

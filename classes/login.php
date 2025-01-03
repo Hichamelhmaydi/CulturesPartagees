@@ -18,37 +18,60 @@ class Login {
         $this->password = $password;
     }
 
+    
     public function login() {
-         $stmt = $this->pdo->prepare("SELECT * FROM user WHERE email = ?");
-        $stmt->bindParam(1, $this->email, PDO::PARAM_STR);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-         if (!$user) {
-            echo "email inccorect";
-            return;
-        }
-
-         if (password_verify($this->password, $user['user_password'])) {
-             $_SESSION['user'] = [
-                'id_user' => $user['id_user'],
-                'nom' => $user['nom'],
-                'prenom' => $user['prenom'],
-                'email' => $user['email'],
-                'role' => $user['role']
-            ];
-            if ($user['role'] == 'utilisateur') {
-                header('Location: ../views/index.html');
-            exit;
-        } elseif ($user['role'] == 'auteur') {
-            header('Location: ../views/auteur.php');
-            exit;
-        }
-        elseif ($user['role'] == 'admin') {
-            header('Location: ../views/admin.php');
-            exit;
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM user WHERE email = ?");
+            $stmt->bindParam(1, $this->email, PDO::PARAM_STR);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($user) {
+                if (password_verify($this->password, $user['user_password'])) {
+                    $_SESSION['user'] = [
+                        'id_user' => $user['id_user'],
+                        'nom' => $user['nom'],
+                        'prenom' => $user['prenom'],
+                        'email' => $user['email'],
+                        'role' => $user['role']
+                    ];
+                    if ($user['role'] == 'utilisateur') {
+                        header('Location: ../views/index.html');
+                        exit;
+                    } elseif ($user['role'] == 'auteur') {
+                        header('Location: ../views/auteur.php');
+                        exit;
+                    }
+                } else {
+                    echo "Mot de passe incorrect.";
+                    return;
+                }
+            }
+    
+            $stmt = $this->pdo->prepare("SELECT * FROM admin WHERE email = ?");
+            $stmt->bindParam(1, $this->email, PDO::PARAM_STR);
+            $stmt->execute();
+            $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($admin) {
+                if ($this->password === $admin['admin_password']) {
+                    $_SESSION['admin'] = [
+                        'email' => $admin['email']
+                    ];
+                    header("Location: ../views/auteur_dashboard.php");
+                    exit;
+                } else {
+                    echo "Mot de passe incorrect pour l'administrateur.";
+                    return;
+                }
+            }
+    
+            echo "Adresse e-mail ou mot de passe incorrect.";
+        } catch (Exception $e) {
+            echo "Erreur: " . $e->getMessage();
         }
     }
-}
+    
+    
 }
 ?>
