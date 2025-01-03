@@ -1,19 +1,19 @@
 <?php
-session_start(); 
+session_start();
 
 require_once '../database/Connection.php';
 require_once '../classes/login.php';
 
-$pdo = (new Connection())->getPDO();
-$login = new Login($pdo);
+ $pdo = (new Connection())->getPDO();
 
+ $login = new Login($pdo);
 
-if (isset($_POST['sub'])) {
-    $email = $_POST['email'];
+ if (isset($_POST['sub'])) {
+     $email = $_POST['email'];
     $password = $_POST['password'];
-
     if (!empty($email) && !empty($password)) {
-        $login->setValues($email, $password);
+         $login->setValues($email, $password);        
+        $login->login();  
     } 
 }
 ?>

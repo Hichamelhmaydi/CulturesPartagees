@@ -17,7 +17,7 @@ if (isset($_POST['sub'])) {
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($user_password)) {
         $inscription->setValues($nom, $prenom, $email, $user_password, $role);
-        $inscription->inscription();
+        $inscription->register();
 
         $_SESSION['user'] = [
             'nom' => $nom,
