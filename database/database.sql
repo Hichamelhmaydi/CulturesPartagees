@@ -30,3 +30,10 @@ CREATE TABLE article (
    Foreign Key (auteur) REFERENCES user (nom),
    Foreign Key (categorie) REFERENCES categories(nom_ca)
 );
+USE CulturesPartagees;
+ALTER TABLE article
+DROP FOREIGN KEY article_ibfk_2;
+
+ALTER TABLE article
+ADD CONSTRAINT article_ibfk_2 FOREIGN KEY (categorie) REFERENCES categories(nom_ca)
+ON UPDATE CASCADE;
