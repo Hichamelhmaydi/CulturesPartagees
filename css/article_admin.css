@@ -1,0 +1,13 @@
+.acc_ref{
+    display: flex;
+    justify-content:end;
+}
+.acc_ref button{
+    border-radius:1em;
+}
+.accepter button:hover{
+    background: green;
+}
+.refuser button:hover{
+    background: red;
+}

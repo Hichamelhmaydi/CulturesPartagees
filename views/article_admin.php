@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/mes_articles.css">
     <link rel="stylesheet" href="../css/article_form.css">
+    <link rel="stylesheet" href="../css/article_admin.css">
     <script src="js/modernizr.js"></script>
 	<script src="js/pace.min.js"></script>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
@@ -26,9 +27,7 @@
 
             <nav id="main-nav-wrap">
                 <ul class="main-navigation sf-menu">
-                <li class="current"><a href="auteur_dashboard.php" title="">Dashboard</a></li>
-                    <li><a href="formule_article.php" title="">Ajouter un Article</a></li>
-                    <li><a href="mes_articles.php" title="">Mes Articles</a></li>
+                <li class="current"><a href="admin_dashboaed.php" title="">Dashboard</a></li>
                     <li><a href="#" title="">Déconnexion</a></li>
                 </ul>
             </nav>

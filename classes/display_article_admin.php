@@ -40,9 +40,24 @@ class displayArticle{
                     echo htmlspecialchars($article['auteur']);
                     echo "</div>";
     
-                    echo "</div>";  
-    
+                    echo "</div>"; 
+                    
+                    
+
+                    echo "<div class='acc_ref'>";
+                    echo "<div class='accepter'>";
+                    echo "<button>accépter</button>";
+                    echo "</div>"; 
+                    echo "<div class='refuser'>";
+                    echo "<button>refuser</button>";
+                    echo "</div>";
+                    echo "</div>";
+
+
+
                     echo "</article>";
+
+
                 }
             } else {
                 echo "Aucun article trouvé.";

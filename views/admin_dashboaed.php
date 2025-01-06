@@ -22,7 +22,7 @@
 
             <nav id="main-nav-wrap">
                 <ul class="main-navigation sf-menu">
-                    <li class="current"><a href="admin_dashboard.html" title="">Dashboard</a></li>
+                    <li class="current"><a href="admin_dashboaed.php" title="">Dashboard</a></li>
                     <li><a href="logout.php" title="">Déconnexion</a></li>
                 </ul>
             </nav>
