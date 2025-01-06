@@ -36,7 +36,7 @@ class Login {
                         'role' => $user['role']
                     ];
                     if ($user['role'] == 'utilisateur') {
-                        header('Location: ../views/index.html');
+                        header('Location: ../views/index.php');
                         exit;
                     } elseif ($user['role'] == 'auteur') {
                         header('Location: ../views/auteur.php');

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
 <html class="no-js" lang="en"> 
+	
 <head>
 
    <!--- basic page needs
@@ -44,12 +44,12 @@
    	<div class="row header-content">
 
    		<div class="logo">
-	         <a href="index.html">Author</a>
+	         <a href="index.php">Author</a>
 	      </div>
 
 	   	<nav id="main-nav-wrap">
 				<ul class="main-navigation sf-menu">
-					<li class="current"><a href="index.html" title="">Home</a></li>									
+					<li class="current"><a href="index.php" title="">Home</a></li>									
 					<li class="has-children">
 						<a href="category.html" title="">Categories</a>
 						<ul class="sub-menu">
@@ -73,6 +73,7 @@
 					<li><a href="contact.html" title="">Contact</a></li>										
 				</ul>
 			</nav> <!-- end main-nav-wrap -->
+
 
 			<div class="search-wrap">
 				
@@ -383,14 +384,23 @@
 						</div>
                </div>
                
-        		</article> <!-- end article -->
-
+        		</article> 
+				
+				
+				
+				
+				
+<?php
+	require_once '../database/Connection.php';
+	require_once '../classes/article_index.php';
+	$pdo = (new Connection())->getPDO(); 
+	$Article = new articleIndex($pdo); 
+	$Article->displayIndex();
+?>
+				<!-- end article -->
          </div> <!-- end brick-wrapper --> 
-
    	</div> <!-- end row -->
-
    	<div class="row">
-   		
    		<nav class="pagination">
 		      <span class="page-numbers prev inactive">Prev</span>
 		   	<span class="page-numbers current">1</span>
@@ -404,7 +414,6 @@
 		      <a href="#" class="page-numbers">9</a>
 		   	<a href="#" class="page-numbers next">Next</a>
 	      </nav>
-
    	</div>
 
    </section> <!-- end bricks -->

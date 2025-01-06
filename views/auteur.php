@@ -44,12 +44,12 @@
    	<div class="row header-content">
 
    		<div class="logo">
-	         <a href="index.html">Author</a>
+	         <a href="index.php">Author</a>
 	      </div>
 
 	   	<nav id="main-nav-wrap">
 				<ul class="main-navigation sf-menu">
-					<li class="current"><a href="index.html" title="">Home</a></li>									
+					<li class="current"><a href="index.php" title="">Home</a></li>									
 					<li class="has-children">
 						<a href="category.html" title="">Categories</a>
 						<ul class="sub-menu">
