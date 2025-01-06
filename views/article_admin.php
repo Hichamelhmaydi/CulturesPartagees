@@ -33,18 +33,15 @@
             </nav>
         </div>     		
     </header>
-
+<main>
 <?php
-            require_once '../database/Connection.php';
-            require_once '../classes/display_article_admin.php';
+require_once '../database/Connection.php';
+require_once '../classes/display_article_admin.php';
+$pdo = (new Connection())->getPDO();
+$DisplayArticle = new displayArticle($pdo);
+$DisplayArticle->displayART();
+?>
+</main>
 
-           
-            $pdo = (new Connection())->getPDO();
 
-           
-            $DisplayArticle = new displayArticle($pdo,);
-
-     
-            $DisplayArticle->displayART();
-            ?>
 </body>

@@ -19,45 +19,31 @@ class displayArticle{
             if (!empty($articles)) {
                 foreach ($articles as $article) {
                     echo "<article class='brick entry format-standard animate-this'>";
-    
                     echo "<div class='entry-text'>";
                     echo "<div class='entry-header'>";
-    
                     echo "<div class='entry-meta'>";
                     echo "<span class='cat-links'>";
                     echo "<span style='color: #000;'>CATEGORIE : "  . htmlspecialchars($article['categorie']) . "</span>";
                     echo "</span>";			
                     echo "</div>";
-    
                     echo "<h1 class='entry-title' style='color: #000;'>TITRE : " . htmlspecialchars($article['titre']) . "</h1>";
                     echo "</div>";  
-    
                     echo "<div class='entry-excerpt' style='color: #000;'> CONTENU : <br> ";
                     echo htmlspecialchars($article['contenu']);
                     echo "</div>";
-    
                     echo "<div class='entry-excerpt' style='color: #000;'> AUTEUR : <br> ";
                     echo htmlspecialchars($article['auteur']);
                     echo "</div>";
-    
                     echo "</div>"; 
-                    
-                    
-
                     echo "<div class='acc_ref'>";
                     echo "<div class='accepter'>";
-                    echo "<button>accépter</button>";
+                    echo "<button name='accepter_art' method='post'>accépter</button>";
                     echo "</div>"; 
                     echo "<div class='refuser'>";
-                    echo "<button>refuser</button>";
+                    echo "<button name='refuser_art' method='post'>refuser</button>";
                     echo "</div>";
                     echo "</div>";
-
-
-
                     echo "</article>";
-
-
                 }
             } else {
                 echo "Aucun article trouvé.";
