@@ -38,17 +38,9 @@ class displayArticle{
                     echo htmlspecialchars($article['auteur']);
                     echo "</div>";
             
-                    // إضافة الأزرار مع معرف فريد لكل مقال
-                    echo "<div class='acc_ref'>";
-                    echo "<button class='accepter_art' id='accepter_" . $index . "'>Accepter</button>";
-                    echo "<button class='refuser_art' id='refuser_" . $index . "'>Refuser</button>";
-                    echo "</div>";
-            
                     echo "</div>";  
                     echo "</article>";
                 }
-            }
-            
             } else {
                 echo "Aucun article trouvé.";
             }
@@ -56,7 +48,5 @@ class displayArticle{
             echo "Erreur: " . $e->getMessage();
         }
     }
-      
-      
 }
 ?>

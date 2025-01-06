@@ -40,6 +40,7 @@ require_once '../classes/display_article_admin.php';
 $pdo = (new Connection())->getPDO();
 $DisplayArticle = new displayArticle($pdo);
 $DisplayArticle->displayART();
+
 ?>
 </main>
 <script src="../js/article_admin.js"></script>
