@@ -26,10 +26,10 @@
 
             <nav id="main-nav-wrap">
                 <ul class="main-navigation sf-menu">
-                    <li class="current"><a href="auteur_dashboard.php" title="">Dashboard</a></li>
+                <li class="current"><a href="auteur_dashboard.php" title="">Dashboard</a></li>
                     <li><a href="formule_article.php" title="">Ajouter un Article</a></li>
-                    <li><a href="my_articles.html" title="">Mes Articles</a></li>
-                    <li><a href="logout.html" title="">Déconnexion</a></li>
+                    <li><a href="mes_articles.php" title="">Mes Articles</a></li>
+                    <li><a href="#" title="">Déconnexion</a></li>
                 </ul>
             </nav>
         </div>     		
