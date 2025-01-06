@@ -35,12 +35,14 @@ class displayArticle{
                     echo htmlspecialchars($article['auteur']);
                     echo "</div>";
                     echo "</div>"; 
+
+
                     echo "<div class='acc_ref'>";
                     echo "<div class='accepter'>";
-                    echo "<button name='accepter_art' method='post'>accépter</button>";
+                    echo "<button class='accepter_art' name='accepter_art' method='post'>accépter</button>";
                     echo "</div>"; 
                     echo "<div class='refuser'>";
-                    echo "<button name='refuser_art' method='post'>refuser</button>";
+                    echo "<button class='refuser_art' name='refuser_art' method='post'>refuser</button>";
                     echo "</div>";
                     echo "</div>";
                     echo "</article>";

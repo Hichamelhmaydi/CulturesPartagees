@@ -1,13 +1,44 @@
-.acc_ref{
+.acc_ref {
     display: flex;
-    justify-content:end;
+    justify-content: end;
 }
-.acc_ref button{
-    border-radius:1em;
+
+.acc_ref button {
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
-.accepter button:hover{
+
+.acc_ref button:hover {
+    opacity: 0.9;
+}
+
+.accepter_art {
+    background: #e0e0e0;
+}
+
+.refuser_art {
+    background: #e0e0e0; 
+}
+
+.accepter_art:hover {
     background: green;
+    color: white;
 }
-.refuser button:hover{
+
+.refuser_art:hover {
     background: red;
+    color: white;
+}
+
+.accepter_un {
+    background: green !important; 
+    color: white;
+}
+
+.refuser_un {
+    background: red !important; 
+    color: white;
 }
