@@ -62,9 +62,7 @@
             <div class="col-four">
                 <div class="card">
                     <h3>Gestion des Articles</h3>
-                    <a href="view_articles.php" class="button">Voir les Articles</a><br>
-                    <a href="approve_article.php" class="button">Accepter un Article</a><br>
-                    <a href="reject_article.php" class="button">Rejeter un Article</a>
+                    <a href="article_admin.php" class="button">Voir les Articles</a>
                 </div>
             </div>
         </div>

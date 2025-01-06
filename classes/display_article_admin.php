@@ -1,19 +1,19 @@
 <?php
 require_once '../database/connection.php';
-session_start();
+
 class displayArticle{
     private $pdo;
-    private $nom;
+
 
     public function __construct($pdo) {
         $this->pdo = $pdo; 
-        $this->nom = $_SESSION['user']['nom'];   
+
     }
   
     public function displayART() {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM article WHERE auteur = ?");
-            $stmt->execute([$this->nom]);
+            $stmt = $this->pdo->prepare("SELECT * FROM article");
+            $stmt->execute();
             $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
             if (!empty($articles)) {

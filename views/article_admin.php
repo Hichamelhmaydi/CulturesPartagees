@@ -37,7 +37,7 @@
 
 <?php
             require_once '../database/Connection.php';
-            require_once '../classes/display_articl.php';
+            require_once '../classes/display_article_admin.php';
 
            
             $pdo = (new Connection())->getPDO();

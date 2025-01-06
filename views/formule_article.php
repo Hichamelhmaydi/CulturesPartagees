@@ -10,7 +10,6 @@ if (isset($_POST['sub_art'])) {
     $auteur = $_POST['auteur'];
     $categorie = $_POST['categorie'];
 
-
     if (!empty($titre) && !empty($contenu) && !empty($auteur) && !empty($categorie)) {
         $Article = new Article($pdo);
         $Article->setValues($titre, $contenu, $auteur, $categorie);
