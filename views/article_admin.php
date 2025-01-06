@@ -41,6 +41,7 @@ $pdo = (new Connection())->getPDO();
 $DisplayArticle = new displayArticle($pdo);
 $DisplayArticle->displayART();
 
+
 ?>
 </main>
 <script src="../js/article_admin.js"></script>
