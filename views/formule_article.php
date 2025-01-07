@@ -1,7 +1,7 @@
 <?php
 require_once '../database/connection.php';
 require_once '../classes/add_article.php';
-
+session_start();
 $pdo = (new Connection())->getPDO();
 
 if (isset($_POST['sub_art'])) {
@@ -11,6 +11,9 @@ if (isset($_POST['sub_art'])) {
     $categorie = $_POST['categorie'];
 
     if (!empty($titre) && !empty($contenu) && !empty($auteur) && !empty($categorie)) {
+        $_SESSION['titre'] = $titre;
+        $_SESSION['contenu'] = $contenu;
+        $_SESSION[''] = $auteur;
         $Article = new Article($pdo);
         $Article->setValues($titre, $contenu, $auteur, $categorie);
         $Article->ajouterArticle();

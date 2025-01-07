@@ -6,3 +6,8 @@ article{
     border-radius:2em;
     display:grid;
 }
+#status{
+    margin-left:45em;
+    font-size:1.5em;
+    color:rgb(0, 0, 0);
+}

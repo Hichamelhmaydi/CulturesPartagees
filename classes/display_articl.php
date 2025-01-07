@@ -4,10 +4,9 @@ session_start();
 class displayArticle{
     private $pdo;
     private $nom;
-
     public function __construct($pdo) {
         $this->pdo = $pdo; 
-        $this->nom = $_SESSION['user']['nom'];   
+        $this->nom = $_SESSION['user']['nom']; 
     }
   
     public function displayART() {
@@ -38,7 +37,8 @@ class displayArticle{
                     echo htmlspecialchars($article['auteur']);
                     echo "</div>";
             
-                    echo "</div>";  
+                    echo "</div>";
+                    echo "<p id='status'>" . htmlspecialchars($article['statut']) . "</p>";
                     echo "</article>";
                 }
             } else {
