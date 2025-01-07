@@ -14,15 +14,15 @@ if (isset($_POST['sub'])) {
   $user_password = $_POST['password'];
   $role = htmlspecialchars($_POST['role']);
   
-  if (isset($_FILES['image_profil']) && $_FILES['image_profil']['error'] === UPLOAD_ERR_OK) {
+  if (isset($_FILES['image_profil'])) {
     $profile = $_FILES['image_profil'];
 
-    if ($profile['size'] > 5000000) { 
+    if ($profile['size'] > 1000000) { 
       echo "l'image est trop grande.";
     } else {
-      $upload_dir = 'uploads/';
+      $upload_dir = 'user_images/';
       $profile_tmp_name = $profile['tmp_name'];
-      $profile_name = basename($profile['name']);
+      $profile_name = basename( $profile['name']);
       $profile_path = $upload_dir . $profile_name;
 
       if (move_uploaded_file($profile_tmp_name, $profile_path)) {
