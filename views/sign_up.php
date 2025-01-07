@@ -38,7 +38,7 @@ if (isset($_POST['sub'])) {
     $inscription->setValues($nom, $prenom, $email, $user_password, $role, $profile_url);
     $inscription->register();
   } else {
-    echo "يرجى إدخال بيانات صحيحة.";
+    echo "Veuillez remplir tous les champs.";
   }
 }
 ?>
