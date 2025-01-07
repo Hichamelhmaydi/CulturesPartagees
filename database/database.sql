@@ -13,6 +13,10 @@ CREATE TABLE admin (
     email VARCHAR(50),
     admin_password VARCHAR(20) 
 );
+USE CulturesPartagees;
+ALTER TABLE user DROP COLUMN image;
+ALTER TABLE user ADD COLUMN profile LONGBLOB;
+
 INSERT INTO admin (email, admin_password) VALUES ('admin@gmail.com', 'ABC12332100');
 
 CREATE TABLE categories (
