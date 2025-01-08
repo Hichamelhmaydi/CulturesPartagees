@@ -8,39 +8,31 @@ $pdo = (new Connection())->getPDO();
 $inscription = new Inscription($pdo);
 
 if (isset($_POST['sub'])) {
-  $nom = htmlspecialchars($_POST['nom']);
-  $prenom = htmlspecialchars($_POST['prenom']);
-  $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-  $user_password = $_POST['password'];
-  $role = htmlspecialchars($_POST['role']);
-  
-  if (isset($_FILES['image_profil'])) {
-    $profile = $_FILES['image_profil'];
+  $nom = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : null;
+  $prenom = isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : null;
+  $email = isset($_POST['email']) ? filter_var($_POST['email'], FILTER_SANITIZE_EMAIL) : null;
+  $user_password = isset($_POST['password']) ? $_POST['password'] : null;
+  $role = isset($_POST['role']) ? htmlspecialchars($_POST['role']) : null;
 
-    if ($profile['size'] > 1000000) { 
-      echo "l'image est trop grande.";
-    } else {
-      $upload_dir = 'user_images/';
-      $profile_tmp_name = $profile['tmp_name'];
-      $profile_name = basename( $profile['name']);
-      $profile_path = $upload_dir . $profile_name;
+ if (isset($_FILES['image_profil']) && $_FILES['image_profil']['error'] === UPLOAD_ERR_OK) {
+      $file_tmp_name = $_FILES['image_profil']['tmp_name'];
+      $file_name = $_FILES['image_profil']['name'];
+      $upload_dir = '../uploads/';
 
-      if (move_uploaded_file($profile_tmp_name, $profile_path)) {
-        $profile_url = $profile_path;
+      $profile_path = $upload_dir . basename($file_name);
+
+      if (move_uploaded_file($file_tmp_name, $profile_path)) {
+          $inscription->setValues($nom, $prenom, $email, $user_password, $role, $file_name, $profile_path);
+          $inscription->register();
       } else {
-        echo "il y a une erreur lors de l'upload de l'image.";
-        exit;
+          echo "Erreur lors du téléchargement de l'image.";
       }
-    }
-  } 
-
-  if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($user_password) && !empty($profile_url)) {
-    $inscription->setValues($nom, $prenom, $email, $user_password, $role, $profile_url);
-    $inscription->register();
   } else {
-    echo "Veuillez remplir tous les champs.";
+      echo "Veuillez sélectionner une image de profil valide.";
   }
 }
+
+
 ?>
 
 <!-- HTML Form -->
