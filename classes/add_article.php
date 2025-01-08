@@ -8,6 +8,7 @@ class Article {
     private $statut;
     private $auteur;
     private $categorie;
+    private $imagePath;
     private $pdo;
 
     public function __construct($pdo) {
@@ -15,11 +16,12 @@ class Article {
         $this->statut = 'en attente';  
     }
 
-    public function setValues($titre, $contenu, $auteur, $categorie) {
+    public function setValues($titre, $contenu, $auteur, $categorie,$imagePath) {
         $this->titre = htmlspecialchars($titre);
         $this->contenu = htmlspecialchars($contenu);
         $this->auteur = htmlspecialchars($auteur);
         $this->categorie = htmlspecialchars($categorie);
+        $this->imagePath = htmlspecialchars($imagePath);
     }
 
     public function ajouterArticle() {
@@ -43,12 +45,13 @@ class Article {
     
         if ($resultAuteur > 0) {
             if ($resultCategorie > 0) {
-                $stmt = $this->pdo->prepare('INSERT INTO article (titre, contenu, statut, auteur, categorie) VALUES (?, ?, ?, ?, ?)');
+                $stmt = $this->pdo->prepare('INSERT INTO article (titre, contenu, statut, auteur, categorie,image_art) VALUES (?, ?, ?, ?, ?,?)');
                 $stmt->bindParam(1, $this->titre, PDO::PARAM_STR);
                 $stmt->bindParam(2, $this->contenu, PDO::PARAM_STR);
                 $stmt->bindParam(3, $this->statut, PDO::PARAM_STR);
                 $stmt->bindParam(4, $this->auteur, PDO::PARAM_STR);
                 $stmt->bindParam(5, $this->categorie, PDO::PARAM_STR);
+                $stmt->bindParam(6, $this->imagePath, PDO::PARAM_STR);
                 if ($stmt->execute()) {
                     echo "Article ajouté avec succès!";
                 } else {

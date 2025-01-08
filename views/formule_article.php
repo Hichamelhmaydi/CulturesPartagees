@@ -9,21 +9,47 @@ if (isset($_POST['sub_art'])) {
     $contenu = $_POST['contenu'];
     $auteur = $_POST['auteur'];
     $categorie = $_POST['categorie'];
+   
+    if (isset($_POST['sub_art'])) {
+        $titre = htmlspecialchars($_POST['titre']);
+        $contenu = htmlspecialchars($_POST['contenu'], ENT_QUOTES, 'UTF-8');
+        $auteur = htmlspecialchars($_POST['auteur'], ENT_QUOTES, 'UTF-8');
+        $categorie = htmlspecialchars($_POST['categorie'], ENT_QUOTES, 'UTF-8');
+    
+        if (isset($_FILES['image'])) {
+            $image = $_FILES['image'];
+            $image_tmp_name = $image['tmp_name'];
+            $image_name = basename($image['name']);
+            $upload_dir = '../article_image/';
+            $image_path = $upload_dir . $image_name;
+    
+            // Vérification de la taille de l'image
+            if ($image['size'] > 1000000) {
+                echo "L'image est trop grande.";
+                exit;
+            }
+        
+    }
+    
 
-    if (!empty($titre) && !empty($contenu) && !empty($auteur) && !empty($categorie)) {
-        $_SESSION['titre'] = $titre;
-        $_SESSION['contenu'] = $contenu;
-        $_SESSION[''] = $auteur;
-        $Article = new Article($pdo);
-        $Article->setValues($titre, $contenu, $auteur, $categorie);
-        $Article->ajouterArticle();
+    if (!empty($titre) && !empty($contenu) && !empty($auteur) && !empty($categorie) && !empty($image['name'])) {
+        $imagePath = '../uploads/' . basename($image['name']);
+        if (move_uploaded_file($image['tmp_name'], $imagePath)) {
+            $_SESSION['titre'] = $titre;
+            $_SESSION['contenu'] = $contenu;
+            $_SESSION['auteur'] = $auteur;
+            $Article = new Article($pdo);
+            $Article->setValues($titre, $contenu, $auteur, $categorie, $imagePath);
+            $Article->ajouterArticle();
+        } else {
+            echo "Erreur lors du téléchargement de l'image.";
+        }
     } else {
         echo "Veuillez remplir tous les champs.";
     }
-}
-
-
+}}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +61,7 @@ if (isset($_POST['sub_art'])) {
 </head>
 <body>
     <!-- Formulaire pour ajouter un article -->
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         <section class="section">
             <div class="container">
                 <h1 class="title has-text-centered">Ajouter un article</h1>
@@ -63,20 +89,26 @@ if (isset($_POST['sub_art'])) {
                         </div>
 
                         <div class="field">
-                <label class="label">Catégorie</label>
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select name="categorie" required>
-                            <option value="" disabled selected>Choisissez une catégorie</option>
-                            <option value="cinema">Cinéma</option>
-                            <option value="musique">Musique</option>
-                            <option value="sports">Sports</option>
-                            <option value="les arts">Les Arts</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+                            <label class="label">Catégorie</label>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select name="categorie" required>
+                                        <option value="" disabled selected>Choisissez une catégorie</option>
+                                        <option value="cinema">Cinéma</option>
+                                        <option value="musique">Musique</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="les arts">Les Arts</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="field">
+                            <label class="label">Image</label>
+                            <div class="control">
+                                <input class="input" type="file" name="image" accept="image/*" required>
+                            </div>
+                        </div>
 
                         <div class="field">
                             <div class="control">
@@ -89,4 +121,4 @@ if (isset($_POST['sub_art'])) {
         </section>
     </form>
 </body>
-</html>
+</html>        
