@@ -21,7 +21,7 @@ class Article {
         $this->contenu = htmlspecialchars($contenu);
         $this->auteur = htmlspecialchars($auteur);
         $this->categorie = htmlspecialchars($categorie);
-        $this->imagePath = htmlspecialchars($imagePath);
+        $this->imagePath = $imagePath;
     }
 
     public function ajouterArticle() {
@@ -51,7 +51,7 @@ class Article {
                 $stmt->bindParam(3, $this->statut, PDO::PARAM_STR);
                 $stmt->bindParam(4, $this->auteur, PDO::PARAM_STR);
                 $stmt->bindParam(5, $this->categorie, PDO::PARAM_STR);
-                $stmt->bindParam(6, $this->imagePath, PDO::PARAM_STR);
+                $stmt->bindParam(6, $this->imagePath);
                 if ($stmt->execute()) {
                     echo "Article ajouté avec succès!";
                 } else {

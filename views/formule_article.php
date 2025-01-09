@@ -2,54 +2,46 @@
 require_once '../database/connection.php';
 require_once '../classes/add_article.php';
 session_start();
+
 $pdo = (new Connection())->getPDO();
 
 if (isset($_POST['sub_art'])) {
-    $titre = $_POST['titre'];
-    $contenu = $_POST['contenu'];
-    $auteur = $_POST['auteur'];
-    $categorie = $_POST['categorie'];
-   
-    if (isset($_POST['sub_art'])) {
-        $titre = htmlspecialchars($_POST['titre']);
-        $contenu = htmlspecialchars($_POST['contenu'], ENT_QUOTES, 'UTF-8');
-        $auteur = htmlspecialchars($_POST['auteur'], ENT_QUOTES, 'UTF-8');
-        $categorie = htmlspecialchars($_POST['categorie'], ENT_QUOTES, 'UTF-8');
-    
-        if (isset($_FILES['image'])) {
-            $image = $_FILES['image'];
-            $image_tmp_name = $image['tmp_name'];
-            $image_name = basename($image['name']);
-            $upload_dir = '../article_image/';
-            $image_path = $upload_dir . $image_name;
-    
-            // Vérification de la taille de l'image
-            if ($image['size'] > 1000000) {
-                echo "L'image est trop grande.";
-                exit;
-            }
-        
-    }
-    
+    $titre = htmlspecialchars($_POST['titre']);
+    $contenu = htmlspecialchars($_POST['contenu']);
+    $auteur = htmlspecialchars($_POST['auteur']);
+    $categorie = htmlspecialchars($_POST['categorie']);
 
-    if (!empty($titre) && !empty($contenu) && !empty($auteur) && !empty($categorie) && !empty($image['name'])) {
-        $imagePath = '../uploads/' . basename($image['name']);
-        if (move_uploaded_file($image['tmp_name'], $imagePath)) {
-            $_SESSION['titre'] = $titre;
-            $_SESSION['contenu'] = $contenu;
-            $_SESSION['auteur'] = $auteur;
-            $Article = new Article($pdo);
-            $Article->setValues($titre, $contenu, $auteur, $categorie, $imagePath);
-            $Article->ajouterArticle();
-        } else {
-            echo "Erreur lors du téléchargement de l'image.";
+    if (isset($_FILES['image']) ) {
+        $image = $_FILES['image'];
+        $image_tmp_name = $image['tmp_name'];
+        $image_name = time() . '-' . basename($image['name']);
+        $upload_dir = '../uploads/';
+        $imagePath = $upload_dir . $image_name;
+
+        if ($image['size'] > 1000000) {
+            echo "la taille de l'image est trop grande.";
+            exit;
         }
-    } else {
-        echo "Veuillez remplir tous les champs.";
-    }
-}}
-?>
 
+        if (move_uploaded_file($image_tmp_name, $imagePath)) {
+            if (!empty($titre) && !empty($contenu) && !empty($auteur) && !empty($categorie)) {
+                $_SESSION['titre'] = $titre;
+                $_SESSION['contenu'] = $contenu;
+                $_SESSION['auteur'] = $auteur;
+                $_SESSION['image'] = $imagePath;
+
+                $article = new Article($pdo);
+                $article->setValues($titre, $contenu, $auteur, $categorie, $imagePath);
+                $article->ajouterArticle();
+            } else {
+                echo "tout les champs sont obligatoires.";
+            }
+        } else {
+            echo " error en upload.";
+        }
+    } 
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +69,7 @@ if (isset($_POST['sub_art'])) {
                         <div class="field">
                             <label class="label">Contenu</label>
                             <div class="control">
-                                <textarea class="textarea" name="contenu" placeholder="Écrivez le contenu de l'article" maxlength="1000" required></textarea>
+                                <textarea class="textarea" name="contenu" placeholder="écrivez le contenu de l'article" maxlength="1000" required></textarea>
                             </div>
                         </div>
 
@@ -121,4 +113,4 @@ if (isset($_POST['sub_art'])) {
         </section>
     </form>
 </body>
-</html>        
+</html>
