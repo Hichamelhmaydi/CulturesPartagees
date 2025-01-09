@@ -42,7 +42,6 @@ if (isset($_POST['sub_art'])) {
     } 
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

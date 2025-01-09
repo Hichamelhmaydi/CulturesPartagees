@@ -1,22 +1,43 @@
-<!DOCTYPE html>
-
 <?php
-	require_once '../database/Connection.php';
-	require_once '../classes/gestion_profile.php';
-	$pdo = (new Connection())->getPDO();
-	$Profile = new GestionProfile($pdo);
-	$profile = $Profile->getProfileById($_SESSION['user']['id_user']);
-    if (isset($_POST['sub'])&& !empty($_POST['username']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['password'])) {
-        $nom = $_POST['username'];
-        $prenom = $_POST['prenom'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $Profile->updateProfile($_SESSION['user']['id_user'], $_POST['username'], $_POST['prenom'], $_POST['email'], $_POST['password']);
-        header('Location: index.php');
-    }
-	?>
-<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+            require_once '../database/Connection.php';            
+            require_once __DIR__ . '/../classes/gestion_profile.php';
+
+
+            $pdo = (new Connection())->getPDO();
+            $profileManager = new GestionProfile($pdo);
+
+
+            if (!isset($_SESSION['user']['id_user'])) {
+                die("Vous devez être connecté.");
+            }
+            
+            $id_user = $_SESSION['user']['id_user'];
+            $profileData = $profileManager->getProfileById($id_user);
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $nom = $_POST['username'] ?? '';
+                $prenom = $_POST['prenom'] ?? '';
+                $email = $_POST['email'] ?? '';
+                $password = $_POST['password'] ?? '';
+
+                $profile_image = null;
+                if (isset($_FILES['profile_image'])) {
+                    $uploadDir = '../uploads/';
+                    $imageName = basename($_FILES['profile_image']['name']);
+                    $imagePath = $uploadDir . $imageName;
+
+                    if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $imagePath)) {
+                        $profile_image = $imageName;
+                    }
+                }
+
+                $profileManager->updateProfile($id_user, $nom, $prenom, $email, $password, $profile_image);
+                header("Location: profile.php");
+                exit();
+            }
+?>
+
+<!DOCTYPE html>
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 
@@ -125,8 +146,10 @@
 
             <section>  
 
-                <div class="content-media">                         
-                    <img src="../images/thumbs/about-us.jpg">                          
+                <div class="content-media">      
+                    <?php                
+                $profileManager->affichage($_SESSION['user']['id_user']);
+                ?>   
                 </div>
 
                 <div class="primary-content">
@@ -175,7 +198,7 @@
    <footer>
 
     <div class="footer-main">
-
+   
         <div class="row">  
 
             <div class="col-four tab-full mob-full footer-info">            
