@@ -43,4 +43,4 @@ ADD CONSTRAINT article_ibfk_2 FOREIGN KEY (categorie) REFERENCES categories(nom_
 ON UPDATE CASCADE;
 
 USE CulturesPartagees;
-ALTER TABLE article ADD COLUMN image_art LONGBLOB;
+DELETE FROM user;
