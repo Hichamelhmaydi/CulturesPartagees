@@ -1,3 +1,11 @@
+<?php
+require_once ('../database/connection.php');
+require_once ('../classes/display_aime.php');
+$pdo = (new Connection())->getPDO(); 
+$articles = new DisplayAime($pdo);
+
+?>
+
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
@@ -20,6 +28,7 @@
    <link rel="stylesheet" href="../css/base.css">
    <link rel="stylesheet" href="../css/vendor.css">  
    <link rel="stylesheet" href="../css/main.css">        
+   <link rel="stylesheet" href="../css/favori.css">  
 
    <!-- script
    ================================================== -->
@@ -88,6 +97,10 @@
 
 			</div> <!-- end search wrap -->	
 
+			<section id="bricks">
+
+
+
 			<div class="triggers">
 				<a class="search-trigger" href="#"><i class="fa fa-search"></i></a>
 				<a class="menu-toggle" href="#"><span>Menu</span></a>
@@ -100,36 +113,21 @@
 
    <!-- content
    ================================================== -->
-   <section id="bricks">
+   <div class="row masonry">
 
-<div class="row masonry">
-
-	<!-- brick-wrapper -->
-  <div class="bricks-wrapper">
-	  <div class="grid-sizer"></div>				
+<!-- brick-wrapper -->
+<div class="bricks-wrapper">
+  <div class="grid-sizer"></div>				
 <?php
+$articles->displayAim();
 
 ?>
-		 <!-- end article -->
-  </div> <!-- end brick-wrapper --> 
+	 <!-- end article -->
+</div> <!-- end brick-wrapper --> 
 </div> <!-- end row -->
-<div class="row">
-	<nav class="pagination">
-	   <span class="page-numbers prev inactive">Prev</span>
-		<span class="page-numbers current">1</span>
-		<a href="#" class="page-numbers">2</a>
-	   <a href="#" class="page-numbers">3</a>
-	   <a href="#" class="page-numbers">4</a>
-	   <a href="#" class="page-numbers">5</a>
-	   <a href="#" class="page-numbers">6</a>
-	   <a href="#" class="page-numbers">7</a>
-	   <a href="#" class="page-numbers">8</a>
-	   <a href="#" class="page-numbers">9</a>
-		<a href="#" class="page-numbers next">Next</a>
-   </nav>
-</div>
 
-</section> <!-- end content -->
+
+</section><!-- end content -->
 
    
    <!-- footer
