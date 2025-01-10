@@ -24,16 +24,21 @@ CREATE TABLE categories (
      nom_ca VARCHAR(20) UNIQUE
 );
 
+DROP TABLE article;
 CREATE TABLE article (
-   id_art  INT AUTO_INCREMENT PRIMARY KEY NOT NULL ,
-   titre VARCHAR(20) NOT NULL ,
-   contenu VARCHAR(10000),
-   statut ENUM ('en attente','accepter','refuser') DEFAULT 'en attente',
+   id_art INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+   titre VARCHAR(20) NOT NULL UNIQUE,
+   contenu VARCHAR(500) UNIQUE, 
+   statut ENUM('en attente', 'accepter', 'refuser') DEFAULT 'en attente',
    auteur VARCHAR(20),
    categorie VARCHAR(20),
-   Foreign Key (auteur) REFERENCES user (nom),
-   Foreign Key (categorie) REFERENCES categories(nom_ca)
+   FOREIGN KEY (auteur) REFERENCES user(nom),
+   FOREIGN KEY (categorie) REFERENCES categories(nom_ca)
 );
+
+
+ALTER TABLE article
+    ADD image_art  LONGBLOB   ;
 USE CulturesPartagees;
 ALTER TABLE article
 DROP FOREIGN KEY article_ibfk_2;
@@ -42,5 +47,16 @@ ALTER TABLE article
 ADD CONSTRAINT article_ibfk_2 FOREIGN KEY (categorie) REFERENCES categories(nom_ca)
 ON UPDATE CASCADE;
 
-USE CulturesPartagees;
 DELETE FROM user;
+DELETE FROM aime;
+
+USE CulturesPartagees;
+CREATE TABLE aime (
+    id_aime INT AUTO_INCREMENT PRIMARY KEY,
+    titre_aime VARCHAR(20),
+    contenu_aime VARCHAR(500),
+    FOREIGN KEY (titre_aime) REFERENCES article(titre),
+    FOREIGN KEY (contenu_aime) REFERENCES article(contenu)
+);
+
+

@@ -19,6 +19,7 @@
    <link rel="stylesheet" href="../css/base.css">
    <link rel="stylesheet" href="../css/vendor.css">  
    <link rel="stylesheet" href="../css/main.css">
+   <link rel="stylesheet" href="../css/index.css">
         
 
    <!-- script
@@ -70,7 +71,7 @@
 			         </ul>
 					</li>
 					<li><a href="Profile.php" title="">Profile</a></li>	
-					<li><a href="contact.html" title="">Contact</a></li>										
+					<li><a href="favori.php" title="">article favori</a></li>										
 				</ul>
 			</nav> <!-- end main-nav-wrap -->
 

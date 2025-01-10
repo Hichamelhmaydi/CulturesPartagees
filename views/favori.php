@@ -47,9 +47,9 @@
 	         <a href="index.html">Author</a>
 	      </div>
 
-	   	<nav id="main-nav-wrap">
+		  <nav id="main-nav-wrap">
 				<ul class="main-navigation sf-menu">
-					<li><a href="index.html" title="">Home</a></li>									
+					<li class="current"><a href="index.php" title="">Home</a></li>									
 					<li class="has-children">
 						<a href="category.html" title="">Categories</a>
 						<ul class="sub-menu">
@@ -62,7 +62,6 @@
 			         </ul>
 					</li>
 					<li class="has-children">
-						<a href="single-standard.html" title="">Blog</a>
 						<ul class="sub-menu">
 			            <li><a href="single-video.html">Video Post</a></li>
 			            <li><a href="single-audio.html">Audio Post</a></li>
@@ -70,11 +69,10 @@
 			            <li><a href="single-standard.html">Standard Post</a></li>
 			         </ul>
 					</li>
-					<li><a href="style-guide.html" title="">Styles</a></li>
-					<li><a href="about.html" title="">About</a></li>	
-					<li class="current"><a href="contact.html" title="">Contact</a></li>										
+					<li><a href="Profile.php" title="">Profile</a></li>	
+					<li><a href="favori.php" title="">article favori</a></li>										
 				</ul>
-			</nav> <!-- end main-nav-wrap -->
+			</nav>  <!-- end main-nav-wrap -->
 
 			<div class="search-wrap">
 				
@@ -102,82 +100,36 @@
 
    <!-- content
    ================================================== -->
-   <section id="content-wrap" class="site-page">
-   	<div class="row">
-   		<div class="col-twelve">
+   <section id="bricks">
 
-   			<section>  
+<div class="row masonry">
 
-   				<div class="content-media">
-						<div id="map-wrap">
-			   			<div id="map-container"></div>
-					      <div id="map-zoom-in"></div>
-							<div id="map-zoom-out"></div>
-			   		</div>  
-					</div>
+	<!-- brick-wrapper -->
+  <div class="bricks-wrapper">
+	  <div class="grid-sizer"></div>				
+<?php
 
-					<div class="primary-content">
+?>
+		 <!-- end article -->
+  </div> <!-- end brick-wrapper --> 
+</div> <!-- end row -->
+<div class="row">
+	<nav class="pagination">
+	   <span class="page-numbers prev inactive">Prev</span>
+		<span class="page-numbers current">1</span>
+		<a href="#" class="page-numbers">2</a>
+	   <a href="#" class="page-numbers">3</a>
+	   <a href="#" class="page-numbers">4</a>
+	   <a href="#" class="page-numbers">5</a>
+	   <a href="#" class="page-numbers">6</a>
+	   <a href="#" class="page-numbers">7</a>
+	   <a href="#" class="page-numbers">8</a>
+	   <a href="#" class="page-numbers">9</a>
+		<a href="#" class="page-numbers next">Next</a>
+   </nav>
+</div>
 
-						<h1 class="entry-title add-bottom">Get In Touch With Us.</h1>	
-
-						<p class="lead">Lorem ipsum Deserunt est dolore Ut Excepteur nulla occaecat magna occaecat Excepteur nisi esse veniam dolor consectetur minim qui nisi esse deserunt commodo ea enim ullamco non voluptate consectetur minim aliquip Ut incididunt amet ut cupidatat.</p> 
-
-						<p>Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco magna amet magna cupidatat qui labore cillum sit in tempor veniam consequat non laborum adipisicing aliqua ea nisi sint ut quis proident ullamco ut dolore culpa occaecat ut laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.</p>
-
-						<div class="row">
-							<div class="col-six tab-full">
-								<h4>Where to Find Us</h4>
-
-					  			<p>
-					         1600 Amphitheatre Parkway<br>
-					         Mountain View, CA<br>
-					         94043 US
-					         </p>
-
-							</div>
-
-							<div class="col-six tab-full">
-								<h4>Contact Info</h4>
-
-				   			<p>someone@abstractwebsite.com<br>
-							   	info@abstractwebsite.com <br>
-							   	Phone: (+63) 555 1212			     
-							   </p>
-
-							</div>
-
-						</div>
-
-						<form name="cForm" id="cForm" method="post" action="">
-	  					   <fieldset>
-
-	                     <div class="form-field">
-	  						      <input name="cName" type="text" id="cName" class="full-width" placeholder="Your Name" value="">
-	                     </div>
-
-	                     <div class="form-field">
-	  						      <input name="cEmail" type="text" id="cEmail" class="full-width" placeholder="Your Email" value="">
-	                     </div>
-
-	                     <div class="form-field">
-	  						      <input name="cWebsite" type="text" id="cWebsite" class="full-width" placeholder="Website"  value="">
-	                     </div>
-
-	                     <div class="message form-field">
-	                        <textarea name="cMessage" id="cMessage" class="full-width" placeholder="Your Message" ></textarea>
-	                     </div>
-
-	                     <button type="submit" class="submit button-primary full-width-on-mobile">Submit</button>
-
-	  					   </fieldset>
-  				      </form> <!-- end form -->
-
-				</section>
-   		
-
-			</div> <!-- end col-twelve -->
-   	</div> <!-- end row -->		
-   </section> <!-- end content -->
+</section> <!-- end content -->
 
    
    <!-- footer
