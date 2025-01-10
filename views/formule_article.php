@@ -1,10 +1,12 @@
 <?php
 require_once '../database/connection.php';
 require_once '../classes/add_article.php';
+require_once '../classes/display_categorie.php';
 session_start();
 
-$pdo = (new Connection())->getPDO();
 
+$pdo = (new Connection())->getPDO();
+$categories = new Display_categorie($pdo);
 if (isset($_POST['sub_art'])) {
     $titre = htmlspecialchars($_POST['titre']);
     $contenu = htmlspecialchars($_POST['contenu']);
@@ -80,19 +82,20 @@ if (isset($_POST['sub_art'])) {
                         </div>
 
                         <div class="field">
-                            <label class="label">Catégorie</label>
-                            <div class="control">
-                                <div class="select is-fullwidth">
-                                    <select name="categorie" required>
-                                        <option value="" disabled selected>Choisissez une catégorie</option>
-                                        <option value="cinema">Cinéma</option>
-                                        <option value="musique">Musique</option>
-                                        <option value="sports">Sports</option>
-                                        <option value="les arts">Les Arts</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+    <label class="label">Catégorie</label>
+    <div class="control">
+        <div class="select is-fullwidth">
+            <select name="categorie" required>
+                <option value="" disabled selected>Choisissez une catégorie</option>
+                <?php
+                    // استدعاء دالة affichageCategorie لعرض الخيارات داخل <select>
+                    $categories->affichageCategorie();
+                ?>
+            </select>
+        </div>
+    </div>
+</div>
+
 
                         <div class="field">
                             <label class="label">Image</label>
